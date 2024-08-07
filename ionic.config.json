@@ -1,0 +1,7 @@
+{
+  "name": "frontend-test-selaz",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
