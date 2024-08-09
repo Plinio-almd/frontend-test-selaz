@@ -1,0 +1,15 @@
+ion-toolbar {
+  --background: #bcbdbe; 
+  --color: #fff;
+}
+div {
+  max-width: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2.5px;
+}
+ion-button{
+  --padding-end: 3rem;
+  --padding-start: 3rem;
+}

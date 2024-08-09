@@ -1,0 +1,130 @@
+<ion-content>
+  <ion-button (click)="toggleForm()">
+    <ng-container *ngIf="!manageForm; else elseTemplate">
+      <ion-icon name="add-outline"></ion-icon>
+    </ng-container>
+    <ng-template #elseTemplate>
+      <ion-icon name="remove-outline"></ion-icon>
+    </ng-template>
+    <p>Add Tasks</p>
+  </ion-button>
+  <div class="form-box">
+    <form *ngIf="manageForm" (ngSubmit)="saveTask()">
+      <ion-item>
+        <ion-label position="floating">Title</ion-label>
+        <ion-input
+          [(ngModel)]="task.title"
+          name="title"
+          type="text"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-input
+          [(ngModel)]="task.description"
+          name="description"
+          type="text"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Due Date</ion-label>
+        <ion-input
+          [(ngModel)]="task.dueDate"
+          name="dueDate"
+          type="date"
+          [min]="today"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">Status</ion-label>
+        <ion-select [(ngModel)]="task.status" name="status">
+          <ion-select-option value="pending">Pending</ion-select-option>
+          <ion-select-option value="ongoing">Ongoing</ion-select-option>
+          <ion-select-option value="done">Done</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label class="label">User</ion-label>
+        <ion-select [(ngModel)]="task.userName" name="userName">
+          <ion-select-option *ngFor="let user of users" [value]="user.name"
+            >{{ user.name }}</ion-select-option
+          >
+        </ion-select>
+      </ion-item>
+
+      <ion-button expand="full" type="submit">
+        {{ isEditing ? 'Update' : 'Create' }} Task
+      </ion-button>
+    </form>
+  </div>
+
+  <ion-segment [(ngModel)]="filterStatus" (ionChange)="applyFilters()">
+    <ion-segment-button value="">All</ion-segment-button>
+    <ion-segment-button value="pending">Pending</ion-segment-button>
+    <ion-segment-button value="ongoing">Ongoing</ion-segment-button>
+    <ion-segment-button value="done">Done</ion-segment-button>
+  </ion-segment>
+
+  <div class="selectors">
+    <ion-select
+      [(ngModel)]="sortDirection"
+      (ionChange)="applyFilters()"
+    >
+      <ion-select-option value="">No Sort</ion-select-option>
+      <ion-select-option value="asc">Asc</ion-select-option>
+      <ion-select-option value="desc">Desc</ion-select-option>
+    </ion-select>
+
+    <ion-select [(ngModel)]="selectedUser" (ionChange)="applyFilters()">
+      <ion-select-option value="">All Users</ion-select-option>
+      <ion-select-option *ngFor="let user of users" [value]="user.name"
+        >{{ user.name }}</ion-select-option
+      >
+    </ion-select>
+  </div>
+
+  <ion-list>
+    <ion-item *ngFor="let task of filteredTasks">
+      <ion-label>
+        <div class="task-text">
+          <h2>{{ task.title }}</h2>
+          <p>{{ task.description }}</p>
+        </div>
+        <div class="task-info">
+          <p>{{ task.status }}</p>
+          <p>Assigned to: {{ task.userName }}</p>
+          <p>Due date: {{ task.dueDate | date }}</p>
+        </div>
+      </ion-label>
+      <div class="task-buttons">
+        <ion-button
+          aria-label="change status"
+          slot="end"
+          color="success"
+          (click)="changeStatus(task)"
+          [disabled]="task.status === 'done'? true : false"
+          ><ion-icon name="swap-horizontal-outline"></ion-icon>
+        </ion-button>
+        <ion-button
+          aria-label="update task"
+          slot="end"
+          color="primary"
+          (click)="editTask(task)"
+          ><ion-icon name="create-outline"></ion-icon>
+        </ion-button>
+        <ion-button
+          aria-label="delete task"
+          slot="end"
+          color="danger"
+          (click)="deleteTask(task.id)"
+          ><ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

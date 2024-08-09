@@ -1,0 +1,105 @@
+ion-content {
+  --padding-top: 16px;
+  --padding-end: 16px;
+  --padding-bottom: 16px;
+  --padding-start: 16px;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+ion-item {
+  margin-bottom: 12px;
+}
+ion-input {
+  margin-top: 12px;
+}
+
+ion-button[type="submit"] {
+  margin-top: 20px;
+}
+
+ion-segment {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+ion-select {
+  margin-bottom: 20px;
+}
+
+ion-list ion-item {
+  border-radius: 8px;
+  margin-bottom: 12px;
+  padding: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ion-label h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+ion-label p {
+  font-size: 14px;
+  color: var(--ion-color-medium);
+}
+ion-segment-button button.button-native {
+  padding-block-start: 0 !important;
+}
+ion-segment-button {
+  min-width: 75px;
+  font-size: 1rem;
+  @media screen and (max-width: 576px) {
+    font-size: .8rem;
+  }
+}
+
+ion-button, ion-button p {
+  margin-left: 8px;
+}
+ion-input[type="date"]{
+  max-width: 180px;  
+}
+.form-box {
+  margin: 0 auto;
+  max-width: 50%;
+  @media screen and (max-width: 768px){
+    max-width: 70%;
+  }
+  @media screen and (max-width: 576px){
+    max-width: 100%;
+  }
+}
+.selectors {
+  display: flex;
+  ion-select {
+    width: 50%;
+    margin-right: 16px;
+    border-bottom: 1px solid lightgray;
+  }
+}
+.task-info{
+  display: flex;
+  align-items: end;
+  gap: .5rem;
+  p {
+    font-size: .65rem;
+  }
+  @media screen and (max-width: 420px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+}
+.task-text {
+  text-wrap: wrap;
+  h2 {
+    text-transform: capitalize;
+  }
+}
+.task-buttons {
+  display: flex;
+  flex-direction: column;
+}
