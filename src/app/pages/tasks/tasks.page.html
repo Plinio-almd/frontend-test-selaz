@@ -71,10 +71,7 @@
   </ion-segment>
 
   <div class="selectors">
-    <ion-select
-      [(ngModel)]="sortDirection"
-      (ionChange)="applyFilters()"
-    >
+    <ion-select [(ngModel)]="sortDirection" (ionChange)="applyFilters()">
       <ion-select-option value="">No Sort</ion-select-option>
       <ion-select-option value="asc">Asc</ion-select-option>
       <ion-select-option value="desc">Desc</ion-select-option>

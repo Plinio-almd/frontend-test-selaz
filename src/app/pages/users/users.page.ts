@@ -8,15 +8,14 @@ import { User } from '../../models/user.model';
   styleUrls: ['./users.page.scss'],
 })
 export class UsersPage {
-
-  users: User[] = []
+  users: User[] = [];
   user: User = {
     name: '',
-    role: "admin"
-  }
-  isEditing = false
+    role: 'admin',
+  };
+  isEditing = false;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.loadUsers();
@@ -26,29 +25,27 @@ export class UsersPage {
     this.users = this.userService.getUsers();
   }
   saveUser() {
-    if(this.isEditing){
-      this.userService.updateUser(this.user)
-      this.isEditing = false
+    if (this.isEditing) {
+      this.userService.updateUser(this.user);
+      this.isEditing = false;
     } else {
-      this.userService.createUser(this.user)
+      this.userService.createUser(this.user);
     }
-    this.resetForm()
-    this.loadUsers()
+    this.resetForm();
+    this.loadUsers();
   }
-  editUser(user: User){
-    this.user = {...user}
-    this.isEditing = true
+  editUser(user: User) {
+    this.user = { ...user };
+    this.isEditing = true;
   }
   deleteUser(userName: string) {
-    this.userService.deleteUser(userName)
-    this.loadUsers()
+    this.userService.deleteUser(userName);
+    this.loadUsers();
   }
-
   resetForm() {
     this.user = {
       name: '',
-      role: 'user'
-    }
+      role: 'user',
+    };
   }
-
 }
